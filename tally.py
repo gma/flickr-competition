@@ -85,8 +85,7 @@ class App:
             votes = [Vote(message.text_content()) for message in messages]
             print "RESULTS"
             scores = Vote.tally(votes)
-            results = sorted(scores, key = scores.get)
-            results.reverse()
+            results = sorted(scores, key = scores.get, reverse = True)
             for entry in results:
                 print "#%s - %d points" % (entry, scores[entry])
         else:
