@@ -96,6 +96,7 @@ if __name__ == '__main__':
     app = App()
     try:
         url = sys.argv[1]
-        App().main(url)
     except LookupError:
         app.usage()
+    else:
+        app.main(url)
