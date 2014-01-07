@@ -83,9 +83,9 @@ class App:
             html = lxml.html.fromstring(response.text)
             messages = html.cssselect('table.TopicReply td.Said p')
             votes = [Vote(message.text_content()) for message in messages]
-            print "RESULTS"
             scores = Vote.tally(votes)
             results = sorted(scores, key = scores.get, reverse = True)
+            print "\nRESULTS\n======="
             for entry in results:
                 print "#%s - %d points" % (entry, scores[entry])
         else:
