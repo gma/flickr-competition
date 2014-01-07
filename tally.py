@@ -63,8 +63,7 @@ class Vote:
                 entry, score = [num for num in match.groups() if num is not None]
                 points[entry] = int(score)
         if len(points) != 3:
-            message = "Skipping message: %s\n" % re.sub(r'\s+', ' ', self.text)
-            sys.stderr.write(message)
+            print >> sys.stderr, "Skipping: %s" % re.sub(r'\s+', ' ', self.text)
             return {}
         else:
             return points
