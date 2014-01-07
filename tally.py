@@ -48,7 +48,7 @@ class Vote:
         result = {}
         for vote in votes:
             for entry, points in vote.points().items():
-                result[entry] = result.setdefault(entry, 0) + points
+                result[entry] = result.get(entry, 0) + points
         return result
 
     def __init__(self, text):
