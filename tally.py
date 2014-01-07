@@ -81,7 +81,7 @@ class App:
         response = requests.get(url)
         if response.ok:
             html = lxml.html.fromstring(response.text)
-            messages = html.cssselect('table.TopicReply tr p')
+            messages = html.cssselect('table.TopicReply td.Said p')
             votes = [Vote(message.text_content()) for message in messages]
             print "RESULTS"
             scores = Vote.tally(votes)
