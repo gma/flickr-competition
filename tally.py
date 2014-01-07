@@ -6,7 +6,7 @@ import lxml.html
 import requests
 
 
-class Pattern:
+class MessagePattern:
 
     @classmethod
     def prefix(cls):
@@ -57,8 +57,8 @@ class Vote:
 
     def points(self):
         points = {}
-        for score in re.findall(Pattern.vote_splitter(), self.text):
-            match = re.match(Pattern.score_splitter(), score)
+        for score in re.findall(MessagePattern.vote_splitter(), self.text):
+            match = re.match(MessagePattern.score_splitter(), score)
             if match:
                 entry, score = [num for num in match.groups() if num is not None]
                 points[entry] = int(score)
