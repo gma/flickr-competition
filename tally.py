@@ -17,11 +17,10 @@ class MessagePattern:
         return r'(?:(?:%s)%s|%s(?:%s))' % (prefix, regex, regex, suffix)
 
     @classmethod
-    def entry(cls, capture = False):
-        entry = r'(\d+)' if capture else r'\d+'
+    def entry(cls, pattern):
         prefix = r'(?:Number|No.|#)\s*'
         suffix = r'#'
-        return cls.with_prefix_or_suffix(entry, prefix, suffix)
+        return cls.with_prefix_or_suffix(pattern, prefix, suffix)
 
     @classmethod
     def suffix(cls):
@@ -33,12 +32,12 @@ class MessagePattern:
 
     @classmethod
     def vote_splitter(cls):
-        pattern = cls.entry() + cls.delimiter() + r'\d+' + cls.suffix()
+        pattern = cls.entry(r'\d+') + cls.delimiter() + r'\d+' + cls.suffix()
         return re.compile(pattern, re.MULTILINE)
 
     @classmethod
     def score_splitter(cls):
-        pattern = cls.entry(True) + cls.delimiter() + r'(\d+)' + cls.suffix()
+        pattern = cls.entry(r'(\d+)') + cls.delimiter() + r'(\d+)' + cls.suffix()
         return re.compile(pattern)
 
 
