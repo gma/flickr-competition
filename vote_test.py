@@ -15,6 +15,10 @@ class VoteTest(unittest.TestCase):
         vote = tally.Vote("#6- 3 pts\n# 8 - 2pts\n #14 - 1 pt")
         self.assertEqual(vote.points(), self.expected())
 
+    def test_points_suffix_isnt_required(self):
+        vote = tally.Vote("#6 - 3\n#8 - 2 \n #14 - 1")
+        self.assertEqual(vote.points(), self.expected())
+
     def test_points_works_with_variety_of_delimiters(self):
         vote = tally.Vote("#6 3 pts. #8: 2pts\n #14 = 1 pt")
         self.assertEqual(vote.points(), self.expected())

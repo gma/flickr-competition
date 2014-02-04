@@ -23,21 +23,17 @@ class RegexBuilder:
         return cls.with_prefix_or_suffix(pattern, prefix, suffix)
 
     @classmethod
-    def suffix(cls):
-        return r'\s*p(?:oin)?ts?'
-
-    @classmethod
     def delimiter(cls):
         return r'[\s:=-]+'
 
     @classmethod
     def vote_splitter(cls):
-        pattern = cls.entry(r'\d+') + cls.delimiter() + r'\d+' + cls.suffix()
+        pattern = cls.entry(r'\d+') + cls.delimiter() + r'\d+'
         return re.compile(pattern, re.MULTILINE)
 
     @classmethod
     def score_splitter(cls):
-        pattern = cls.entry(r'(\d+)') + cls.delimiter() + r'(\d+)' + cls.suffix()
+        pattern = cls.entry(r'(\d+)') + cls.delimiter() + r'(\d+)'
         return re.compile(pattern)
 
 
