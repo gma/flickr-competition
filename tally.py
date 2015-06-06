@@ -75,7 +75,7 @@ class App:
         response = requests.get(url)
         if response.ok:
             html = lxml.html.fromstring(response.text)
-            paragraphs = html.cssselect('table.TopicReply td.Said p')
+            paragraphs = html.cssselect('div.reply div.message-text')
             scores = Vote.tally([Vote(tag.text_content()) for tag in paragraphs])
             results = sorted(scores, key = scores.get, reverse = True)
             print "\nRESULTS\n======="
